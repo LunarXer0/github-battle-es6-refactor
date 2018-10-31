@@ -59,6 +59,4 @@ export async function fetchPopularRepos(language) {
 
   const repos = await axios.get(encodedURI).catch(handleError);
   return repos.data.items;
-
-  return axios.get(encodedURI).then(({ data }) => data.items);
 }
