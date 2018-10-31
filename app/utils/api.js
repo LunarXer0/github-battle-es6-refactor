@@ -1,8 +1,8 @@
 const axios = require("axios");
 
-var id = "YOUR_CLIENT_ID";
-var sec = "YOUR_SECRET_ID";
-var params = "?client_id=" + id + "&client_secret=" + sec;
+const id = "YOUR_CLIENT_ID";
+const sec = "YOUR_SECRET_ID";
+const params = `?client_id=${id}&client_secret=${sec}`;
 
 function getProfile(username) {
   return axios
@@ -12,7 +12,7 @@ function getProfile(username) {
 
 function getRepos(username) {
   return axios.get(
-    `https://api.github.com/users/${username}/repos${params}&per_page=100`
+    `https://api.github.com/users/${username}/repos${params}'&per_page=100`
   );
 }
 
@@ -53,10 +53,9 @@ module.exports = {
   },
   fetchPopularRepos(language) {
     const encodedURI = window.encodeURI(
-      `https://api.github.com/search/repositories?q=stars:>1+language:
-        ${language}
-        &sort=stars&order=desc&type=Repositories`
+      `https://api.github.com/search/repositories?q=stars:>1+language:${language}&sort=stars&order=desc&type=Repositories`
     );
+
     return axios.get(encodedURI).then(({ data }) => data.items);
   }
 };

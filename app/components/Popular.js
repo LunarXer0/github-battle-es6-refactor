@@ -1,7 +1,6 @@
 const React = require("react");
 const PropTypes = require("prop-types");
 const api = require("../utils/api");
-
 const Loading = require("./Loading");
 
 function SelectLanguage({ selectedLanguage, onSelect }) {
@@ -24,8 +23,8 @@ function SelectLanguage({ selectedLanguage, onSelect }) {
 function RepoGrid({ repos }) {
   return (
     <ul className="popular-list">
-      {repos.map(({ id, name, owner, stargazers_count, html_url }, index) => (
-        <li key={id} className="popular-item">
+      {repos.map(({ name, stargazers_count, owner, html_url }, index) => (
+        <li key={name} className="popular-item">
           <div className="popular-rank">#{index + 1}</div>
           <ul className="space-list-items">
             <li>
@@ -77,9 +76,9 @@ class Popular extends React.Component {
 
     api.fetchPopularRepos(lang).then(repos => this.setState(() => ({ repos })));
   }
-
   render() {
     const { selectedLanguage, repos } = this.state;
+
     return (
       <div>
         <SelectLanguage

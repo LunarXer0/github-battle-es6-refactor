@@ -13,12 +13,11 @@ class PlayerInput extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
   handleChange(event) {
     const value = event.target.value;
+
     this.setState(() => ({ username: value }));
   }
-
   handleSubmit(event) {
     event.preventDefault();
 
@@ -77,7 +76,6 @@ class Battle extends React.Component {
       [id + "Image"]: `https://github.com/${username}.png?size=200`
     }));
   }
-
   handleReset(id) {
     this.setState(() => ({
       [id + "Name"]: "",
@@ -141,10 +139,7 @@ class Battle extends React.Component {
               className="button"
               to={{
                 pathname: match.url + "/results",
-                search: `?playerOneName=
-                  ${playerOneName}
-                  &playerTwoName=
-                  ${playerTwoName}`
+                search: `?playerOneName=${playerOneName}&playerTwoName=${playerTwoName}`
               }}
             >
               Battle
